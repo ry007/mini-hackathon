@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">CodinGame</string>
+    <string name="app_name">Memory Atlas</string>
+    <string name="footer_string">GitHub Handles:    @sahiljain112     @Ruchi1496 </string>
 </resources>
