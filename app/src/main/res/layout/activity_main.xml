@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#D2691E"
+        android:background="#d2691e"
          >
 
         <TextView
@@ -25,38 +25,111 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:id="@+id/scores"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player 1: 95"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/tvPlayer1"
+            android:textSize="20sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player 2: 102"
+            android:id="@+id/tvPlayer2"
+            android:layout_alignParentRight="true"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/scores"
+        android:layout_above="@id/footer"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sample Text"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:padding="10dp"
+            android:id="@+id/tvWord"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:id="@+id/buttons"
+            >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter"
+                android:id="@+id/bEnter"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Declare"
+                android:id="@+id/bDeclare"/>
+
+
+        </LinearLayout>
+
     <ScrollView
         android:id="@+id/scrollableContents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/footer"
+        android:layout_below="@+id/buttons"
+        android:padding="10dp"
         >
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:layout_height="match_parent"
+            android:background="#F0F0F0"
+            android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tvWordList"
+            android:text="Sample Word List"
+            android:padding="10dp"
+            />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Player 1: 95"
-                android:layout_alignParentLeft="true"
-                android:id="@+id/tvPlayer1"
-                android:textSize="20sp"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tvWordLists"
+                android:text="Sample Word List"
+                android:padding="10dp"
+                />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Player 2: 102"
-                android:id="@+id/tvPlayer2"
-                android:layout_alignParentRight="true"
-                android:textSize="20sp"/>
-
-        </RelativeLayout>
+        </LinearLayout>
 
     </ScrollView>
+
+    </LinearLayout>
 
 </RelativeLayout>
