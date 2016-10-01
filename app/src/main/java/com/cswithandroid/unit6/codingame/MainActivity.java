@@ -19,11 +19,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvPlayer1,tvPlayer2, tvWord, tvWordList;
     private TreeDictionary dictionary;
     private boolean USER1_TURN = true, USER2_TURN = false, LOCK1 = false, LOCK2 = false;
+    private int player1Score=0,player2Score=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         AssetManager assetManager = getAssets();
         try {
@@ -52,35 +55,56 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(USER1_TURN)
-                  LOCK1 = true;
-                else
-                  LOCK2 = true;
-
-                if(LOCK1 && LOCK2)
-                    endGame();
-
+                declare();
             }
         });
     }
+
+    private void declare(){
+        if(USER1_TURN)
+            LOCK1 = true;
+        else
+            LOCK2 = true;
+
+        if(LOCK1 && LOCK2)
+            endGame();
+    }
+
     private boolean checkValidWord(TextView tvWord){
         if( dictionary.getIndex()> dictionary.getCount()){
-
+            String word=tvWord.getText().toString();
+            if(dictionary.addNewWord(tvWord.getText().toString())){
+               int score= dictionary.computeScore(word);
+                updateViews();
+                changeTurn(score);
+            }else{
+                makeToast("The word does not exist in the Atlas");
+            }
         }else{
-
+            if(!dictionary.checkWordExistence(tvWord.getText().toString())){
+                updateViews();
+            }else{
+                makeToast("Incorrect sequence. You can't play anymore");
+                declare();
+                changeTurn(0);
+            }
         }
         return false;
     }
 
-    public void changeTurn(){
-
+    public void changeTurn(int score){
+        resetTextViews();
       if(USER1_TURN == true){
+          player1Score+=score;
+          tvPlayer1.setText("PLayer 1: "+player1Score);
         if(LOCK2 != true){
           USER1_TURN = false;
           USER2_TURN = true;
         }
       }
       else{
+          player2Score+=score;
+          tvPlayer2.setText("PLayer 2: "+player2Score);
         if(LOCK1 != true){
           USER2_TURN = false;
           USER1_TURN = true;
