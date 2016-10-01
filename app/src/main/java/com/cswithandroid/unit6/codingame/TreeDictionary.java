@@ -78,6 +78,14 @@ public class TreeDictionary {
     // Set operations
     public boolean isGoodWord(String word){
 
+        char firstChar = word.charAt(0);
+        if(wordList.size() > 0){
+          String lastWord = wordList.get(wordList.size() - 1);
+          char lastChar = lastWord.charAt( lastWord.length() - 1);
+          if(firstChar != lastChar)
+            return false;
+        }
+        
         return !wordSet.contains(word) && t.contains(word);
     }
 

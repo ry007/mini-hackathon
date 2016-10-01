@@ -17,7 +17,12 @@ Memory games are played to keep in mind the player's ability to remember maximum
 
 We have used the following data structures as per the requirements of the game
 
+      1. TreeSet
+        * As our dictionary
+        * To eliminate redundancy in sequence of words
 
+    2. ArrayList
+       * This stores the entire sequence of words in one game.
 
 ### Enter and declare
 
