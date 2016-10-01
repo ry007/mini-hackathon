@@ -9,7 +9,9 @@ Each player names a country, state or continent that starts with the alphabet wh
 
 ### Memory game
 
-### How it is played?
+Memory games are played to keep in mind the player's ability to remember maximum number of names/ countries or any other set of values. The player keeps repeating the entire sequence and adds a new word to the end of the sequence after successfully repeating the sequence. The game goes on till all those players who cannot remember the correct sequence are eliminated.
+
+### How is Memory Atlas played?
 
 ### Data Structures used
 

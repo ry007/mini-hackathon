@@ -58,6 +58,32 @@ public class MainActivity extends AppCompatActivity {
                 declare();
             }
         });
+
+        tvWord.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+              InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+              imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+            }
+        });
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+
+        Log.d("keycode", "keycode entered is "+keyCode);
+
+        if(keyCode < 29 || keyCode > 54) {
+            Toast.makeText(this,"Enter valid character",Toast.LENGTH_SHORT).show();
+            return super.onKeyUp(keyCode, event);
+        }
+        char unicodeChar = (char)event.getUnicodeChar();
+        String word = tvWord.getText().toString();
+        word = word + unicodeChar;
+        Log.d("newWord","the new word is "+word);
+
+        // Check if the word is a valid one or not!
+        tvWord.setText(word);
     }
 
     private void declare(){
@@ -127,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void makeToast(String message){
-      Toast newToast = Toast.makeToast(this, message, TOAST.LENGTH_LONG);
+      Toast newToast = Toast.makeText(this, message, Toast.LENGTH_LONG);
       newToast.show();
     }
 
