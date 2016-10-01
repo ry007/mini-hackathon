@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Memory Atlas</string>
     <string name="footer_string">GitHub Handles:    @sahiljain112     @Ruchi1496 </string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>
