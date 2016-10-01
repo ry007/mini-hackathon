@@ -77,6 +77,7 @@ public class TreeDictionary {
     }
     // Set operations
     public boolean isGoodWord(String word){
+
         return !wordSet.contains(word) && t.contains(word);
     }
 
@@ -117,6 +118,14 @@ public class TreeDictionary {
         }
 
         return scoreValue;
+    }
+
+    public int getCount(){
+        return count;
+    }
+
+    public int getIndex(){
+        return currentIndex;
     }
 
 }

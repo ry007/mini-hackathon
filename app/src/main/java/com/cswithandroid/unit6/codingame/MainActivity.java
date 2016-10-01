@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button bEnter, bDeclare;
     private TextView tvPlayer1,tvPlayer2, tvWord, tvWordList;
     private TreeDictionary dictionary;
+    private boolean USER1_TURN = true, USER2_TURN = false, LOCK1 = false, LOCK2 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +52,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(USER1_TURN)
+                  LOCK1 = true;
+                else
+                  LOCK2 = true;
+
+                if(LOCK1 && LOCK2)
+                    endGame();
+
             }
         });
     }
     private boolean checkValidWord(TextView tvWord){
-        if( TreeDictionary.getIndex()> TreeDictionary.getCount()){
+        if( dictionary.getIndex()> dictionary.getCount()){
 
         }else{
 
         }
         return false;
+    }
+
+    public void changeTurn(){
+
+      if(USER1_TURN == true){
+        if(LOCK2 != true){
+          USER1_TURN = false;
+          USER2_TURN = true;
+        }
+      }
+      else{
+        if(LOCK1 != true){
+          USER2_TURN = false;
+          USER1_TURN = true;
+        }
+      }
+    }
+
+    public void endGame(){
+
     }
 }
