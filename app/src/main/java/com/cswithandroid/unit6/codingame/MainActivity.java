@@ -88,7 +88,32 @@ public class MainActivity extends AppCompatActivity {
       }
     }
 
-    public void endGame(){
+    public void updateViews (word) {
 
+      String wordList = tvWordList.getText().toString();
+      wordList = wordList + " \n" + word;
+      tvWordList.setText(wordList);
+
+      if(dictionary.getIndex() > dictionary.getCount()){
+        tvWord.setText("Enter new word");
+      }
+      else
+        tvWord.setText("Enter sequence!");
+
+    }
+
+    public void makeToast(String message){
+      Toast newToast = Toast.makeToast(this, message, TOAST.LENGTH_LONG);
+      newToast.show();
+    }
+
+    public void resetTextViews() {
+      tvWordList.setText("");
+      tvWord.setText("Enter sequence");
+    }
+
+    public void endGame(){
+      dictionary.resetValues();
+      tvWordList.setText("Enter new word!");
     }
 }
