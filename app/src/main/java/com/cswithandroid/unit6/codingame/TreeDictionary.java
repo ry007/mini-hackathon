@@ -1,9 +1,14 @@
 package com.cswithandroid.unit6.codingame;
 
+import android.content.Intent;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.TreeSet;
 
@@ -14,34 +19,104 @@ import java.util.TreeSet;
 public class TreeDictionary {
 
     TreeSet<String> t;
-    LinkedHashSet<String> wordList;
+    TreeSet<String> wordSet;
+    ArrayList<String> wordList;
+    HashMap<Character,Integer> scores;
+    int count;
+    int currentIndex;
 
     public TreeDictionary(InputStream inputStream) throws IOException {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+        t = new TreeSet<>();
         String line;
         while((line = in.readLine()) != null) {
             String word = line.trim();
+            word = word.toLowerCase();
+            t.add(word);
         }
 
-        t = new TreeSet<>();
-        wordList = new LinkedHashSet<>();
+        wordSet = new TreeSet<>();
+        wordList = new ArrayList<>();
+        scores = new HashMap<>();
+        count = 0;
+        currentIndex = 0;
+        initializeScores();
     }
 
-    public void add( String word){
-        t.add(word);
-    }
+    public void initializeScores(){
 
-    // Hash Set operations
+        // Score allotment: Based on popular game Wordament!
+        scores.put('a',3);
+        scores.put('b',4);
+        scores.put('c',5);
+        scores.put('d',3);
+        scores.put('e',3);
+        scores.put('f',4);
+        scores.put('g',3);
+        scores.put('h',3);
+        scores.put('i',3);
+        scores.put('j',3);
+        scores.put('k',3);
+        scores.put('l',3);
+        scores.put('m',3);
+        scores.put('n',3);
+        scores.put('o',3);
+        scores.put('p',3);
+        scores.put('q',3);
+        scores.put('r',3);
+        scores.put('s',3);
+        scores.put('t',3);
+        scores.put('u',3);
+        scores.put('v',3);
+        scores.put('w',3);
+        scores.put('x',3);
+        scores.put('y',3);
+        scores.put('z',3);
+
+    }
+    // Set operations
     public boolean isGoodWord(String word){
-        return !wordList.contains(word);
+        return !wordSet.contains(word) && t.contains(word);
     }
 
-    public boolean addToHashSet(String word){
+    public boolean addNewWord(String word){
 
+        word = word.toLowerCase();
         if(isGoodWord(word)){
-
+            wordSet.add(word);
+            wordList.add(word);
+            return true;
         }
         return false;
     }
+
+    public void resetValues(){
+        wordList = new ArrayList<>();
+        wordSet = new TreeSet<>();
+    }
+
+    public boolean checkWordExistence(String word){
+
+        if(wordList.get(currentIndex).equals(word)){
+            currentIndex = currentIndex + 1;
+            return true;
+        }
+        else {
+            currentIndex = 0;
+            return false;
+        }
+    }
+
+    public int computeScore(String word){
+
+        int scoreValue = 0;
+        for(int i = 0 ; i < word.length(); i++){
+            char c = word.charAt(i);
+            scoreValue += scores.get(c);
+        }
+
+        return scoreValue;
+    }
+
 }
