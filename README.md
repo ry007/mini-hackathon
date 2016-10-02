@@ -36,6 +36,7 @@ We have used the following data structures as per the requirements of the game
     2. ArrayList
        * This stores the entire sequence of words in one game.
 
+
 ### Computing Score
 
 To make things interesting, each alphabet has an associated score with it based on how rarely it is used in words. The final score upon declaring is the user's score. The player with the highest score wins!
