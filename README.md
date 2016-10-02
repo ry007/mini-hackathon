@@ -26,6 +26,7 @@ We have used the following data structures as per the requirements of the game
 
 ### Enter and declare
 
+
 ### Computing Score
 
 To make things interesting, each alphabet has an associated score with it based on how rarely it is used in words. The final score upon declaring is the user's score. The user can declare at any point of time. The player with the highest score wins!

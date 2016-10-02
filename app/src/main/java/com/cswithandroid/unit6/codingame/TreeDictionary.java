@@ -85,8 +85,7 @@ public class TreeDictionary {
           if(firstChar != lastChar)
             return false;
         }
-        
-        return !wordSet.contains(word) && t.contains(word);
+         return !wordSet.contains(word); // && t.contains(word);
     }
 
     public boolean addNewWord(String word){
@@ -106,6 +105,9 @@ public class TreeDictionary {
     }
 
     public boolean checkWordExistence(String word){
+
+        if(wordList.isEmpty())
+            return false;
 
         if(wordList.get(currentIndex).equals(word)){
             currentIndex = currentIndex + 1;
