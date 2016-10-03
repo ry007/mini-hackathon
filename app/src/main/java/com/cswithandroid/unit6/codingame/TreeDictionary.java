@@ -94,6 +94,7 @@ public class TreeDictionary {
         if(isGoodWord(word)){
             wordSet.add(word);
             wordList.add(word);
+            count = count + 1;
             return true;
         }
         return false;
@@ -106,6 +107,7 @@ public class TreeDictionary {
 
     public boolean checkWordExistence(String word){
 
+        word = word.toLowerCase();
         if(wordList.isEmpty())
             return false;
 
@@ -122,12 +124,17 @@ public class TreeDictionary {
     public int computeScore(String word){
 
         int scoreValue = 0;
+        word = word.toLowerCase();
         for(int i = 0 ; i < word.length(); i++){
             char c = word.charAt(i);
             scoreValue += scores.get(c);
         }
 
         return scoreValue;
+    }
+
+    public void resetCurrentIndex(){
+        currentIndex = 0;
     }
 
     public int getCount(){

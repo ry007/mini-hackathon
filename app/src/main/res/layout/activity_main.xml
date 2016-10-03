@@ -65,7 +65,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter word..."
+            android:hint="Enter new word..."
             android:textSize="30sp"
             android:inputType="textNoSuggestions"
             android:layout_gravity="center_horizontal"

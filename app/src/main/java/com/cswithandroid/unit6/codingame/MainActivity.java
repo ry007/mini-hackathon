@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText tvWord;
     private TreeDictionary dictionary;
     private boolean USER1_TURN = true, USER2_TURN = false, LOCK1 = false, LOCK2 = false;
-    private int player1Score=0,player2Score=0;
+    private int player1Score = 0,player2Score = 0;
     private int defaultTextColor;
 
     @Override
@@ -107,21 +107,20 @@ public class MainActivity extends AppCompatActivity {
 //        return true;
 //    }
 
-    private void declare(){
+    private boolean declare(){
         if(USER1_TURN)
             LOCK1 = true;
         else
             LOCK2 = true;
 
-        if(LOCK1 && LOCK2)
-            endGame();
+        return (LOCK1 && LOCK2);        // returns true if both locks are set!
     }
 
     private void checkValidWord(TextView tvWord){
         String word=tvWord.getText().toString();
         if( dictionary.getIndex() >= dictionary.getCount()){
-            if(dictionary.addNewWord(tvWord.getText().toString())){
-                makeToast("HELLO");
+            if(dictionary.addNewWord(word)){
+                makeToast("New word added");
                 int score= dictionary.computeScore(word);
                 updateViews(word);
                 changeTurn(score);
@@ -129,12 +128,14 @@ public class MainActivity extends AppCompatActivity {
                 makeToast("The word does not exist in the Atlas");
             }
         }else{
-            makeToast("THER");
-            if(!dictionary.checkWordExistence(word)){
+            //makeToast("Sequence branch");
+            if(dictionary.checkWordExistence(word)){
                 updateViews(word);
-            }else{
+                makeToast("Correct sequence word. Go on!");
+            }
+            else {
                 makeToast("Incorrect sequence. You can't play anymore");
-                declare();
+                boolean endGameCondition = declare();
                 changeTurn(0);
             }
         }
@@ -142,41 +143,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeTurn(int score){
-        resetTextViews();
-      if(USER1_TURN == true){
-          player1Score+=score;
-          tvPlayer1.setText("PLayer 1: "+player1Score);
-        if(LOCK2 != true){
+
+      setTextViews("","Enter Sequence!");
+      dictionary.resetCurrentIndex();
+
+      if(USER1_TURN){
+          player1Score += score;
+
+        if(!LOCK2){
             tvPlayer2.setTextColor(Color.rgb(200,0,0));
             tvPlayer1.setTextColor(defaultTextColor);
-          USER1_TURN = false;
-          USER2_TURN = true;
+            USER1_TURN = false;
+            USER2_TURN = true;
         }
       }
       else{
-          player2Score+=score;
-          tvPlayer2.setText("PLayer 2: "+player2Score);
-        if(LOCK1 != true){
+          player2Score += score;
+        if(!LOCK1){
+
             tvPlayer1.setTextColor(Color.rgb(200,0,0));
             tvPlayer2.setTextColor(defaultTextColor);
-          USER2_TURN = false;
-          USER1_TURN = true;
+            USER2_TURN = false;
+            USER1_TURN = true;
         }
       }
+        setScores();    // Sets both players updated scores
     }
 
     public void updateViews (String word) {
 
       String wordList = tvWordList.getText().toString();
       wordList = wordList + " \n" + word;
-      tvWordList.setText(wordList);
 
-      if(dictionary.getIndex() > dictionary.getCount()){
-        tvWord.setText("Enter new word");
+      if(dictionary.getIndex() >= dictionary.getCount()){
+        setTextViews(wordList,"Enter new word");
       }
       else
-        tvWord.setText("Enter sequence!");
-
+        setTextViews(wordList, "Enter sequence!");
     }
 
     public void makeToast(String message){
@@ -184,13 +187,23 @@ public class MainActivity extends AppCompatActivity {
       newToast.show();
     }
 
-    public void resetTextViews() {
-      tvWordList.setText("");
-      tvWord.setText("Enter sequence");
+    public void setTextViews(String wordListString, String wordHint) {
+          tvWordList.setText(wordListString);
+          tvWord.getText().clear();
+          tvWord.setHint(wordHint);
     }
 
     public void endGame(){
-      dictionary.resetValues();
-      tvWordList.setText("Enter new word!");
+          makeToast("End of game!");
+          player1Score = player2Score = 0;
+          setScores();
+          dictionary.resetValues();
+          tvWord.getText().clear();
+          tvWord.setHint("Enter new word!");
+    }
+
+    public void setScores() {
+        tvPlayer1.setText("PLayer 1: "+player1Score);
+        tvPlayer2.setText("Player 2: "+player2Score);
     }
 }
