@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.cswithandroid.unit6.codingame.MainActivity">
 
     <!-- Footer aligned to bottom -->
@@ -36,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Player 1: 95"
+            android:text="Player 1: 0"
             android:layout_alignParentLeft="true"
             android:id="@+id/tvPlayer1"
             android:textSize="20sp"/>
@@ -45,7 +47,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Player 2: 102"
+            android:text="Player 2: 0"
             android:id="@+id/tvPlayer2"
             android:layout_alignParentRight="true"
             android:textSize="20sp"/>
@@ -60,12 +62,12 @@
         android:orientation="vertical"
         >
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-
+            android:hint="Enter word..."
             android:textSize="30sp"
+            android:inputType="textNoSuggestions"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
             android:padding="10dp"

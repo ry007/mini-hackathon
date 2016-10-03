@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,8 @@ import java.util.Dictionary;
 public class MainActivity extends AppCompatActivity {
 
     private Button bEnter, bDeclare,bInst;
-    private TextView tvPlayer1,tvPlayer2, tvWord, tvWordList;
+    private TextView tvPlayer1,tvPlayer2, tvWordList;
+    private EditText tvWord;
     private TreeDictionary dictionary;
     private boolean USER1_TURN = true, USER2_TURN = false, LOCK1 = false, LOCK2 = false;
     private int player1Score=0,player2Score=0;
@@ -49,12 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         tvPlayer1 = (TextView) findViewById (R.id.tvPlayer1);
         tvPlayer2 = (TextView) findViewById (R.id.tvPlayer2);
-        tvWord = (TextView) findViewById( R.id.tvWord);
+        tvWord = (EditText) findViewById( R.id.tvWord);
         tvWordList = (TextView) findViewById( R.id.tvWordList);
-
         defaultTextColor = tvPlayer2.getTextColors().getDefaultColor();
-
-
 
         tvPlayer1.setTextColor(Color.rgb(200,0,0));
 
@@ -72,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tvWord.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-              InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-              imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-            }
-        });
+//        tvWord.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//              InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//              imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+//            }
+//        });
 
         bInst.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,25 +87,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-
-        Log.d("keycode", "keycode entered is "+keyCode);
-
-//        if(keyCode < 29 || keyCode > 54) {
-//            Toast.makeText(this,"Enter valid character",Toast.LENGTH_SHORT).show();
-//            return super.onKeyUp(keyCode, event);
-//        }
-        char unicodeChar = (char)event.getUnicodeChar();
-        String word = tvWord.getText().toString();
-        word = word + unicodeChar;
-        Log.d("newWord","the new word is "+word);
-
-        // Check if the word is a valid one or not!
-        tvWord.setText(word);
-
-        return true;
-    }
+//    @Override
+//    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//
+//        Log.d("keycode", "keycode entered is "+keyCode);
+//
+////        if(keyCode < 29 || keyCode > 54) {
+////            Toast.makeText(this,"Enter valid character",Toast.LENGTH_SHORT).show();
+////            return super.onKeyUp(keyCode, event);
+////        }
+//        char unicodeChar = (char)event.getUnicodeChar();
+//        String word = tvWord.getText().toString();
+//        word = word + unicodeChar;
+//        Log.d("newWord","the new word is "+word);
+//
+//        // Check if the word is a valid one or not!
+//        tvWord.setText(word);
+//
+//        return true;
+//    }
 
     private void declare(){
         if(USER1_TURN)
