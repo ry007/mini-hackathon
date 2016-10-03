@@ -2,7 +2,7 @@
     <string name="app_name">Memory Atlas</string>
     <string name="footer_string">GitHub Handles:    @sahiljain112     @Ruchi1496 </string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="instructions">1) Start the game with a country name starting with an 'A'.
+    <string name="instructions">1) Start the game with a country name starting with an \'A\'.
         \n\n2) Enter the entire sequence of words in each turn.
         \n\n3) Enter a new country starting with the last alphabet of the previous word.
         \n\n4) Score is computed according to the strength of each value.

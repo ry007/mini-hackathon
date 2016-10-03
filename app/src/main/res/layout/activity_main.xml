@@ -111,14 +111,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F0F0F0"
             android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/tvWordList"
-            android:text="Sample Word List"
+            android:text="Sequence"
             android:padding="10dp"
             />
 
@@ -126,13 +125,13 @@
 
     </ScrollView>
 
-<Button
-    android:id="@+id/bInst"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="right"
-    android:text="instructions"
-    />
+     <android.support.design.widget.FloatingActionButton
+            android:id="@+id/instructions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@android:drawable/ic_dialog_info" />
     </LinearLayout>
 
 </RelativeLayout>

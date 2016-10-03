@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,7 +23,7 @@ import java.util.Dictionary;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button bEnter, bDeclare,bInst;
+    private Button bEnter, bDeclare; // ,bInst;
     private TextView tvPlayer1,tvPlayer2, tvWordList;
     private EditText tvWord;
     private TreeDictionary dictionary;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         bEnter = (Button) findViewById( R.id.bEnter);
         bDeclare = (Button) findViewById( R.id.bDeclare);
-        bInst = (Button) findViewById( R.id.bInst);
+       //bInst = (Button) findViewById( R.id.bInst);
 
         tvPlayer1 = (TextView) findViewById (R.id.tvPlayer1);
         tvPlayer2 = (TextView) findViewById (R.id.tvPlayer2);
@@ -71,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.instructions);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+            }
+        });
+
 //        tvWord.setOnClickListener(new View.OnClickListener(){
 //            @Override
 //            public void onClick(View v){
@@ -79,12 +88,12 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        bInst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-            }
-        });
+//        bInst.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+//            }
+//        });
     }
 
 //    @Override
