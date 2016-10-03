@@ -136,7 +136,11 @@ public class MainActivity extends AppCompatActivity {
             else {
                 makeToast("Incorrect sequence. You can't play anymore");
                 boolean endGameCondition = declare();
-                changeTurn(0);
+
+                if(endGameCondition)
+                    endGame();
+                else
+                    changeTurn(0);
             }
         }
 
