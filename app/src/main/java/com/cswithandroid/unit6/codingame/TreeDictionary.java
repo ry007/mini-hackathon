@@ -6,10 +6,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.TreeSet;
 
 /**
@@ -85,7 +83,7 @@ public class TreeDictionary {
           if(firstChar != lastChar)
             return false;
         }
-         return !wordSet.contains(word); // && t.contains(word);
+         return !wordSet.contains(word) && t.contains(word);
     }
 
     public boolean addNewWord(String word){
@@ -94,6 +92,7 @@ public class TreeDictionary {
         if(isGoodWord(word)){
             wordSet.add(word);
             wordList.add(word);
+            count = count + 1;
             return true;
         }
         return false;
@@ -106,6 +105,7 @@ public class TreeDictionary {
 
     public boolean checkWordExistence(String word){
 
+        word = word.toLowerCase();
         if(wordList.isEmpty())
             return false;
 
@@ -122,12 +122,17 @@ public class TreeDictionary {
     public int computeScore(String word){
 
         int scoreValue = 0;
+        word = word.toLowerCase();
         for(int i = 0 ; i < word.length(); i++){
             char c = word.charAt(i);
             scoreValue += scores.get(c);
         }
 
         return scoreValue;
+    }
+
+    public void resetCurrentIndex(){
+        currentIndex = 0;
     }
 
     public int getCount(){

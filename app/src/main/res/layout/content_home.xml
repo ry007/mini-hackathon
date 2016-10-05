@@ -22,10 +22,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
         android:maxLines="50"
+        android:textColor="#000000"
         android:textSize="20dp"
-        android:text="1) Start the game with a #country name starting with an 'A'.
-        \n2) Enter a new #country name starting with the last alphabet of the previous word.
-        \n3) Remember the sequence of the names of the countries entered.
-        \n4) points ###
-        \n5) winner"/>
+        android:text="@string/instructions" />
+
 </RelativeLayout>
