@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
     public void updateViews (String word) {
 
       String wordList = tvWordList.getText().toString();
-      wordList = wordList + " \n" + word;
+      wordList = wordList + " \n" + word.toLowerCase();
 
       if(dictionary.getIndex() >= dictionary.getCount()){
         setTextViews(wordList,"Enter new word");
